@@ -16,6 +16,23 @@ pipeline {
             }
         }
 
+        stage('Run SonarQube'){
+            steps{
+                withSonarQubeEnv('SonarQubeCursoCI') {
+                    bat "sonar-scanner -Dsonar.projectKey=DotnetApp"
+                }
+            }
+        }
+
+        stage('SonarQube Quality Gate') {
+            steps {
+                sleep 5
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
         stage('Build'){
             steps {
                 bat 'dotnet build'
