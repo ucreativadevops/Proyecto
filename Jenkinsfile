@@ -30,7 +30,7 @@ pipeline {
 
         stage('Deploy'){
             steps {
-                bat 'xcopy bin\Release\net7.0\publish\ C:\deploy\DotnetApp\ /s /q /y'
+                bat 'xcopy bin\\Release\\net7.0\\publish\\ C:\\deploy\\DotnetApp\\ /s /q /y'
             }
         }
     }
