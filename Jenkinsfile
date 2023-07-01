@@ -16,13 +16,13 @@ pipeline {
             }
         }
 
-        stage('Test'){
+        stage('Build'){
             steps {
                 bat 'dotnet build'
             }
         }
 
-        stage('Test'){
+        stage('Package'){
             steps {
                 bat 'dotnet publish -c Release'
             }
